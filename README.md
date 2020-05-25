@@ -2,6 +2,17 @@
 
 The following project was based on a case that was prepared by Davit Khachatryan, Assistant Professorof Statistics & Analyticsat Babson College (2014 Babson College and licensed for publication to Harvard Business Publishing).
 
+  * [Overview](#overview)
+  * [Executive Summary](#executive-summary)
+  * [Data](#data)
+  * [Data Cleansing](#data-cleansing)
+  * [Outliers](#outliers)
+  * [Missing Data](#missing-data)
+  * [Forecasts](#forecasts)
+    + [Holt Winters Forecast](#holt-winters-forecast)
+    + [Amelia Forecast](#amelia-forecast)
+  * [Model Selection](#model-selection)
+
 ## Overview
 The Fargo Health Group (FHG) has decided to do a pilot-study to determine if a data solution can accurately predict the incoming volume of medical requests in order to improve the scheduling of physicians. FHG has provided a dataset on the historical monthly examinations volume of cardiovascular examinations from the Health Center located in Abbeville, LA.
 In order to effectively schedule physicians, FHG needs to be able to predict how many examinations to expect at the different Health Centers. This pilot program attempts to predict a small subset of these examinations, specifically the cardiovascular exams at just one of their Health Centers.
