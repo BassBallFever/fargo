@@ -7,6 +7,13 @@ The Fargo Health Group (FHG) has decided to do a pilot-study to determine if a d
 In order to effectively schedule physicians, FHG needs to be able to predict how many examinations to expect at the different Health Centers. This pilot program attempts to predict a small subset of these examinations, specifically the cardiovascular exams at just one of their Health Centers.
 The dataset that FHG provided will need to be examined, the data will need to be cleaned, and a forecasting method will need to be chosen. 
 
+## Executive Summary
+
+FHG provided several spreadsheets that needed to be transformed into one consistent dataset. Once that was done, there were two outliers that needed to be looked at. It was determined that one was the result of a data entry error, while the other was seen as an accurate number. The error was corrected using a 3-period weighted average.
+
+Next, missing values were imputed. Two methods were compared, Amelia and weighted averages. Weighted averges prodcued the most likely results and was used on the ten missing values.
+
+Finally, two forecasting models were analyzed and plotted, the Holt Winters Forecast and the ARIMA Forecast. The Holt Winters Forecast had a much better Mean Average Deviation and was chosen to present to FHG.
 
 ## Data
 FHG provided a dataset in the form of an Excel spreadsheet. This spreadsheet consisted of eight worksheets that contained the data.
@@ -57,7 +64,7 @@ The Holt Winters forecast was run without specifying the alpha value, allowing R
 
 ![](/images/figure6.png)
 
-![](/images/figure7.png)
+![](/images/figure7-1.png)
 
 ### Amelia Forecast
 
@@ -68,4 +75,4 @@ The ARIMA forecast was run next. Once again, R was used to automatically fit the
 ![](/images/figure9.png)
 
 ## Model Selection
-The two models were compared on the basis of MAD. The Holt Winters forecast yielded a MAD of 0.13 while the Arima forecast yielded a MAD of 235.23. The Holt Winters forecast was chosen based on having a much better MAD.
+The two models were compared on the basis of Mean Absolute Deviation (MAD). The Holt Winters forecast yielded a MAD of 0.13 while the Arima forecast yielded a MAD of 235.23. The Holt Winters forecast was chosen based on having a much better MAD.
