@@ -15,7 +15,9 @@ The following project was based on a case that was prepared by Davit Khachatryan
 
 ## Overview
 The Fargo Health Group (FHG) has decided to do a pilot-study to determine if a data solution can accurately predict the incoming volume of medical requests in order to improve the scheduling of physicians. FHG has provided a dataset on the historical monthly examinations volume of cardiovascular examinations from the Health Center located in Abbeville, LA.
+
 In order to effectively schedule physicians, FHG needs to be able to predict how many examinations to expect at the different Health Centers. This pilot program attempts to predict a small subset of these examinations, specifically the cardiovascular exams at just one of their Health Centers.
+
 The dataset that FHG provided will need to be examined, the data will need to be cleaned, and a forecasting method will need to be chosen. 
 
 ## Executive Summary
@@ -29,8 +31,11 @@ Finally, two forecasting models were analyzed and plotted, the Holt Winters Fore
 ## Data
 FHG provided a dataset in the form of an Excel spreadsheet. This spreadsheet consisted of eight worksheets that contained the data.
 The first sheet has three columns: Incoming Examinations, Year, and Month. It lists the number of cardiovascular examinations for each month from January 2006 through December 2013 that originated at the Abbeville, LA Health Center. 
+
 The next four worksheets contain examinations that were sent from one Health Center to another. Each of four worksheets contains information about examinations that were sent to another Health Center in May 2007. There is one worksheet for each of four Health Centers: Violet, New Orleans, Lafayette, and Baton Rouge. These worksheets include all examinations sent from all Health Centers in May 2007.
+
 One worksheet contained information about all examinations done by FHG in December 2013. It just contains the Routing SYSID. The SYSID is a 17 character string that contains the location code (first four characters), Condition Code (next six characters), among other information.
+
 There is a worksheet that contains the heart-related Condition Codes and another that contains all of the Condition Codes.
 
 ## Data Cleansing
@@ -39,8 +44,11 @@ The Abbeville worksheet was copied in order to transform the data without losing
 ![](/images/figure1.png)
 
 The four worksheets containing data for the examinations that were sent to other Health Centers had several dates that were not formatted properly. These were manually changed in order to get an accurate count of examinations in each month. Columns for Month and Year were then added to these worksheets. There were numerous duplicate Request IDs, which were removed.
+
 Pivot tables were created based each of the worksheets in order to filter the data. Each pivot table was filtered to show the cardiovascular examinations sent from Abbeville. They were grouped by Year and Month. The examinations were then added to the corresponding months in the Cleaned Data worksheet.
+
 Added columns in the December 2013 Data worksheet for Location Code and Condition Code. These columns were filled in from the SYSID. A third column was added to represent whether or not the examination was sent from Abbeville and was a cardiovascular exam. This count was added to the Cleaned Data worksheet. 
+
 A quick examination of the data showed that there were 10 values that were obviously inaccurate. Two of them were over 99 million and eight were not numbers. These 10 values were reformatted in the Cleaned Data worksheet. The result was saved in a csv file and examined in R.
 
 ## Outliers
@@ -50,6 +58,7 @@ There were two values that did not appear to conform to the general trends of th
 ![](/images/figure2.png)
 
 The value for October 2008 does indeed appear to be a mistake, perhaps a simple typo. The value for December 2013, however, upon closer inspection appears to be part of a downward trend after a high of 6094 in October 2013. 
+
 The value for October 2008 value was replaced using a 3-period weighted moving average value. The weights used were 0.5, 0.3, and 0.2. That value turned out to be 995.
 
 ## Missing Data
